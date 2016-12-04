@@ -17,14 +17,15 @@ from gensim.corpora import WikiCorpus
 def main(wikiXmlPath, outputPath):
 	# map
 	wiki_corpus = WikiCorpus(sys.argv[1], dictionary={})
+        wiki_corpus.LEMMATIZE = False
 	# iterate wiki articles
 	count = 0
-	with open(outputPath, 'wb', encoding = 'utf-8') as output:
+	with open(outputPath, 'wb') as output:
 		for article in wiki_corpus.get_texts():
-			import pdb
-			pdb.set_trace()
 			article = [HanziConv.toSimplified(text.decode('utf-8')) for text in article]
-			output.write(' '.join(article)+ '\n')
+                        #import pdb
+                        #pdb.set_trace()
+			output.write((u' '.join(article)+ u'\n').encode('utf-8'))
 			count = count + 1
 			if count % 10000 == 0:
 				logging.info("%d articles processed", count)
@@ -32,9 +33,10 @@ def main(wikiXmlPath, outputPath):
 
 
 if __name__ == '__main__':
-	if len(sys.argv != 3):
+	if len(sys.argv) != 3:
 		print ("please input a wiki xml dump file path and output path.")
 		exit()
 	# logging congiurationg
 	logging.basicConfig(format='%(asctime)s: %(levelname)s : %(message)s', level = 1)
-	main(sys.argv[1], sys.argv[2])
+        # turn off lemmatization
+        main(sys.argv[1], sys.argv[2])
