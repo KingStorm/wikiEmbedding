@@ -5,6 +5,7 @@ python version: 2.7
 segment Chinese words
 '''
 
+import sys
 import jieba
 import logging
 
@@ -25,11 +26,11 @@ def main(rawTextPath ,stopWordsPath, outputPath):
 			for line in f_raw:
 				words = jieba.cut(line.decode('utf-8'), cut_all = False)
 				for word in words:
-					if word notin stopWords:
-						f_out.write((word+u' '.encode('utf-8')))
+					if word not in stopWords:
+						f_out.write((word+u' ').encode('utf-8'))
 						count = count + 1
 						if count % 10000 == 0:
-						logging.info("%d words segmented", count)
+						        logging.info("%d words segmented", count)
 
 
 
