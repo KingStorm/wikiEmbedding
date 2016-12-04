@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-python version: 3.5
+python version: 2.7
 
 extract text from xml dump file
 tranfer complex Chinese into Simplified Chinese
@@ -25,7 +25,7 @@ def main(wikiXmlPath, outputPath):
 			pdb.set_trace()
 			article = [HanziConv.toSimplified(text.decode('utf-8')) for text in article]
 			output.write(' '.join(article)+ '\n')
-			count += 1
+			count = count + 1
 			if count % 10000 == 0:
 				logging.info("%d articles processed", count)
 
