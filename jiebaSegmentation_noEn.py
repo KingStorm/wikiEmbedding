@@ -40,7 +40,7 @@ def main(rawTextPath ,stopWordsPath, enWordsPath, outputPath):
 
 
 if __name__ == '__main__':
-	if len(sys.argv) != 4:
+	if len(sys.argv) != 5:
 		print ("please input a raw text file path, stop words file path, and a output path.")
 		exit()
 	# logging congiurationg
