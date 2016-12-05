@@ -7,13 +7,13 @@ segment Chinese words
 
 import sys
 import logging
-import gensim.models import word2vec
+from gensim.models import word2vec
 
 # start segmentation
 def main(segTextPath, modelSavePath):
 	# iterate wiki articles
 	sentences = word2vec.Text8Corpus(segTextPath)
-	model = word2vec.Word2Vec(sentences, size=256)
+	model = word2vec.Word2Vec(sentences, size=256, sg=1)
 	model.save_word2vec_format(modelSavePath, binary=True)
 
 
